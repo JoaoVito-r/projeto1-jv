@@ -1,4 +1,4 @@
-O projeto a seguir tem o objetivo de aplicar os conceitos básicos de GIT e GITHUB, através de conhecimentos adquiridos com o Curso de Git de Github disponível em: "https://youtu.be/kB5e-gTAl_s".
+O projeto a seguir tem o objetivo de aplicar os conceitos básicos de GIT e GITHUB, através de conhecimentos adquiridos com o Curso de Git e Github disponível em: "https://youtu.be/kB5e-gTAl_s".
 Estrutura:
 O projeto está estruturado em 4 Branches:
 - Main (contendo o arquivo README.md)
