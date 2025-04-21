@@ -1,0 +1,273 @@
+CURSO DE GIT E GITHUB
+
+-- O que é GIT?
+Sistema de controle de versão de códigos e sistema e programação
+
+-- O que é GITHUB?
+Local onde você vai armazenar todo o código que está sendo versionado no GIT
+
+AULA 0 - Instalar o GIT
+FIM
+
+AULA 1 - Como criar uma conta no GITHUB
+FIM
+
+AULA 2 - Como inicializar um repositório GIT
+Criar uma pasta, clicar com o botão direito e ir em GIT BASH HERE, escrever	"git init"
+Criar um arquivo de texto na pasta para testar
+Para verificar o local em que eu estou guardando meu código eu preciso ir no git e digitar: git status
+
+FIM 
+
+AULA 3 - Como adicionar arquivos ao controle de versão
+
+Sintaxe:
+git add "MeuCodigo.txt"
+
+-- Para verificar se foi adicionado podemos digitar:
+git status
+
+-- Esse modo é eficiente quando se quer adicionar apenas um arquivo. Porém, quando se deseja adicionar
+-- vários arquivos, uma maneira mais eficiente é:
+
+git add .
+
+Assim adiciona todos os arquivos pendentes para o controle de versão.
+
+FIM 
+
+AULA 4 - Como criar versões do código com COMMIT
+ 
+ Sintaxe:
+ git commit -m " "  -- o "-m '' " é uma boa prática de deixar uma mensagem para explicar o que foi alterado na versão
+ 
+-- geralmente na primeira versão deixamos como git commit -m "commit inicial"
+-- Provavelmente meu irmão usou o git no meu pc. Preciso digitar:
+
+git config --global user.name "meu nome"
+git config --global email "meuemail"
+
+Depois abrir alterar o commit com o nome errado:
+git commit --amend --reset-author
+Após isso:
+-- Pressionar: ESC
+-- Digitar: :wq
+-- Pressionar: Enter
+
+Para ver se funcionou, rodar:
+git log
+
+ FIM
+ 
+AULA 5 - Como enviar alterações usando o GIT PUSH
+
+ Sintaxe:
+ git push
+
+-- Não vai funcionar porque ainda não criei o projeto na nuvem.
+
+Criando o projeto:
+Abrindo o github, clicando em new repository, criando a pasta e depois disso indo no git e digitando:
+$ git remote add origin https://github.com/JoaoVito-r/projeto1-jv
+
+depois disso digite:
+git push
+
+FIM
+
+AULA 6 - Ciclo de atualização de código
+
+1) Fazer alguma alteração para teste
+2) no git: git status -- vai aparecer como modificado
+3) Para adicionar ao versonamento de código, fazemos:
+git add .
+git status (para verificar se foi adicionado)
+git commit -m "Informar o que foi adicionado"
+git push
+
+FIM
+
+AULA 7 - Como Verificar Histórico de Atualizações
+
+Sintaxe:
+git reflog
+
+FIM
+
+AULA 8 - Como Navegar entre versões do seu código
+
+-- Suponha que eu tenha cometido um erro e precise voltar para alguma versão anterior do meu código (localmente)
+
+Sintaxe:
+git reset --hard id
+
+Depois é só fazer o mesmo processo para voltar para a versão mais atual
+
+-- Alerta: não rodar os comandos de mudar versão a não ser que eu realmente precise.
+-- Consultar meu superior para ver se é um procedimento que eles costumam fazer na empresa
+
+FIM
+
+AULA 9 - O que são branches e como criar uma
+-- São caminhos diferentes que vamos seguir durante meu processo de desenvolvimento
+-- Quando começamos a desenvolver, enviamos nossas alterações para uma Branch Master (principal)
+-- Pode ter várias versões, cada uma com uma correção ou uma nova funcionalidade.
+-- Quando é para uso individual, geralmente só uma Branch já é suficiente para atender às minhas necessidades
+-- Porém, ao trabalhar em equipe surge a necessidade de trabalhar com mais de uma branch, para manter uma Branch estável, onde colocamos apenas os códigos que funcionam
+-- Visto que o desenvolvimento não pode parar, são criadas Branchs paralelas, onde o desenvolvimento será feito nelas e após estar funcionando trazemos para a Branch principal (através do Merge)
+
+Sintaxe:
+git branch
+
+--Para criar uma nova Branch fazemos:
+git branch staging (nome convencional dado a uma branch que está recebendo atualizações que ainda não estão testadas em produção)
+
+-- Rodar git branch para testar se funcionou.
+-- A Master está com "*" e está em verde. Isso significa que ela é a branch em que estamos trabalhando no momento
+-- Para mudar de Branch precisamos utilizar o comando:
+git checkout staging
+git branch (para verificar se trocou mesmo)
+
+-- Testar essa funcionalidade:
+1) Fazer uma alteração
+2) Digitar git status 
+3) git add . 
+4) git commit -m "Alterando para o nome do github"
+5) git status --verificar se foi
+6) git push -- Quando crio uma branch nova e quero subir ela para a nuvem, tenho que rodar o comando que ele pedir
+7) git push --set-upstream origin staging
+
+-- Essa é a vantagem de trabalhar com mais de uma Branch. Podemos continuar versionando nosso código ao mesmo tempo que mantemos o original que está funcionando
+
+-- Agora vamos supor que nossa versão de staging está estável e pronta para ser usada no lugar da branch principal
+-- Para trazermos as atualizações podemos fazer um merge.
+
+FIM
+
+AULA 10 - git merge (como unir o código)
+
+1) Ir para a Branch que irá receber as alterações
+git checkout master
+git pull -- Motivo explicado no 'ALERTA'
+git Branch
+
+2) Fazer o Merge
+git merge staging 
+
+3) Mandar as alterações para o github 
+git push 
+
+-- ALERTA: Sempre que eu entrar na Branch principal, antes de fazer o Merge eu preciso de puxar as Atualizações
+-- que estão no servidor para a minha máquina para eu ter certeza de que eu estou unindo os códigos nas versões mais
+-- atuais possíveis, pois se isso não for feito pode ser que outra pessoa tenha feito alterações e eu estaria
+-- fazendo o merge com uma versão antiga ou desatualizada.
+
+-- Portanto, antes de fazer o merge é bom entrar na Branch principal e digitar:
+git pull (esse comando traz as atualizações do servidor para a minha máquina local)
+-- Somente após fazer o git pull fazemos o git merge de uma branch com a outra
+git merge staging
+
+Ordem recomendada:
+1) git pull da branch principal
+2) gerar uma nova branch a partir da principal
+3) trabalhar e adicionar novas funcionalidades da nova branch que criou
+4) Finalizar o trabalho na branch temporária
+5) git checkout na branch principal
+6) git pull
+7) Fazer o merge da branch temporária com a branch principal (depois de testar)
+8) git push da branch principal 
+
+-- Testando esses conhecimentos:
+
+-- Suponha que eu tenha recebido a tarefa de criar um sistema de login (uma nova funcionalidade no sistema)
+Etapas:
+1) Atualizar o código: git pull
+2) Criar uma nova branch a partir da principal: git checkout -b sistema-de-login master
+3) (Criar um novo arquivo para simular, chamado de sistema-de-login)
+4) git status
+5) git add .
+6) git commit -m "criado o sistema de login"
+-- Suponha que eu já tenha criado o código, ele está funcionando e pronto para ser unido com a master)
+7) Voltar para a Branch Master: git checkout master
+8) Atualizar o código da Master: git pull
+9) Unir as Branches: git merge sistema-de-login
+10) mandar as alterações para o servidor: git push
+
+-- Esse processo maior é o ideal ao realizar um trabalho em equipe. Porém, para uso pessoal não é necessário
+
+-- Na vida real e em muitas empresas antes de adicionar o código ao Branch principal tem um processo chamado de
+-- pull request que é onde enviamos nosso código e algum outro programador aprova ou rejeita ele com base em alguma coisa
+
+FIM
+
+AULA 11 - PULL REQUEST (UM MERGE DEMOCRÁTICO)
+
+-- Em alguns casos só conseguimos unir o nosso código com o código principal se algum outro programador aprovar
+-- essa mudança através de um processo chamado pull request
+
+git checkout sistema-de-login
+-- fazer uma alteração
+git add .
+git commit -m "adicionado idade ao sistema de login"
+git push
+git push --set-upstream origin sistema-de-login
+
+
+-- Para unir esse código com o código da Branch Master ao trabalhar em equipe quando eles precisam que meu código seja
+-- aprovado antes de unir com a branch principal
+
+-- O processo agora só funciona no GITHUB.
+-- Ao dar o push no codigo, no GIT HUB aparece as modificações e "compare & pull request"
+-- Podemos clicar lá, selecionar a master na base
+-- Ao fazer isso aparece uma interface para explicarmos exatamente todas as alterações que fizemos para que a outra
+-- pessoa possa aprovar ou rejeitar o código 
+-- Após isso basta clicar em create pull request
+-- Como estou sozinho nesse projeto, ele já está pronto para fazer o merge.
+-- Porém, em um projeto em equipe aparece na direita os "Reviewers", que são os que irão revisar o meu projeto
+-- Em uma equipe podem haver uma ou várias pessoas que vão revisar o código.
+-- Caso o código seja rejeitado, preciso ler os comentários, fazer as correções e enviar um novo commit
+-- marcando as pessoas que exigiram as alterações apontando que corrigi.
+
+FIM 
+
+AULA 12 - GITIGNORE
+
+-- Pode haver casos em que temos arquivos na nossa pasta que não desejamos mandar para o controle de versão
+
+-- Exemplo: criei uma pasta chamada "segredos", com um arquivo "senhas" dentro dela.
+-- Essa pasta não pode subir de forma alguma para o controle de versão.
+-- Se eu rodar git status ele vai identificar a pasta segredos e pedir para eu adicionar ao controle de versão
+-- Da mesma forma, se eu digitar git add ., esse arquivo será adicionado ao controle de versão
+-- Para impedir isso, precisamos criar um arquivo chamado ".gitignore"
+-- Esse arquivo precisa ser criado no próprio terminal do git, pois no windows não é possível rodar esse comando normalmente
+-- Comando: touch .gitignore
+-- Será criado um arquivo gitignore na pasta. Dentro dele precisamos colocar quais arquivos não quero adicionar ao controle de versão
+-- Como não quero adicionar a pasta segredos ao controle de versão preciso digitar: Segredos/
+
+Adicionando mais um:
+-- Criei o arquivo fotos.png
+-- Quero adicionar ela ao GITIGNORE. Basta ir na linha de baixo e digitar "fotos.png" e salvar.
+-- OBSERVAÇÃO! É importante que eu adicione o arquivo git. ignore, pois ele que controla o que vai ser escondido ou não
+git commit -m "adicionando arquivo gitignore"
+git push
+
+-- Acabamos fazendo no "sistema-de-login", mas geralmente é algo que fazemos no começo do nosso projeto, diretamente da branch Master
+
+FIM 
+
+AULA 13 - Considerações Finais
+
+Resumão de conceitos:
+
+git init                   								         -- inicializa um novo repositório
+git add .                        							     -- adiciona os arquivos atuais ao próximo commit
+git status                        								 -- verificar o status atual dos repositórios GIT
+git commit -m "mensagem do commit"								 -- criar um novo commit com uma mensagem 
+git push                         							     -- Envia atualizações para a nuvem na branch atualmente ativa
+git branch                        								 -- Permite listar e ver qual branch está ativa atualmente
+git checkout nome-da-branch                                      -- Permite mudar para a nova Branch
+git checkout -b "nome da branch de origem" "nome da nova branch" -- Permite mudar e criar uma nova branch com base em outra
+git merge "branch a receber o merge" 							 -- permite fazer o merge da branch ativa atualmente com outra Branch
+git pull 														 -- atualiza a branch atualmente ativa
+
+FIM 
