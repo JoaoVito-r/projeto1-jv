@@ -28,7 +28,6 @@ Trata-se de um repositório educativo voltado para o domínio prático de versio
 
 ## 📄 Arquivos na Branch `master`
 
-- `README.md`: Este documento, com descrição completa do projeto
 - `.gitignore`: Arquivo de configuração para ignorar itens específicos no controle de versão
 - `Anotacoes Curso GIT devaprender.txt`: Todas as anotações feitas durante o curso
 - `MeuCodigo.txt`: Código de exemplo utilizado durante as aulas
