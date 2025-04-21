@@ -7,6 +7,7 @@ O projeto está estruturado em 4 Branches:
 - sistema-de-login (exemplo de criação de mais uma branch)
 
 A Branch Master contém os arquivos:
+- README.md (arquivo atual)
 - .gitignore
 - Anotacoes Curso GIT devaprender.txt (Contém as anotações feitas ao longo de cada aula do curso)
 - MeuCodigo.txt (Código Inicial de teste)
